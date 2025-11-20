@@ -29,7 +29,7 @@ Tidbits of code for Power Automate, Power Query, Power BI, Power Apps, SharePoin
 
 
 ## About the Team
-The Power Automate Lab started as a means to collaborate and problem-solve together. It is comprised of Power Platform developers from all walks of life, at different business and IT positions throughout Michigan Medicine and University of Michigan. We jokingly called our first in-person meeting the "Automators Anonymous" meeting, so the name seemed fitting for this code repository.
+The Power Automate Lab started as a means to collaborate and problem-solve together. It is comprised of Power Platform users from different business, research and IT positions throughout Michigan Medicine and University of Michigan. We jokingly called our first in-person meeting the "Automators Anonymous" meeting, so the name seemed fitting for this code repository.
 
 
 
@@ -42,20 +42,20 @@ If you need assistance identifying a contact person, email the project maintaine
 
 ## Credits
 #### Contributors:
-+ Gabriel Mongefranco [(@gabrielmongefranco)](https://github.com/gabrielmongefranco) - Mobile Data Architect, Eisenberg Family Depression Center. https://gabriel.mongefranco.com
-+ Jeremy Gluskin [@jerm-ops](https://github.com/jerm-ops) - Revenue Lifecycle System Coordinator, MM Quality - Patient Safety, Michigan Medicine.
-+ Shelley Boa [@blondilox-ai](https://github.com/blondilox-ai) - Program Manager, MM Int Med-Pulm./Critical Care, Michigan Medicine.
-+ Name [@githubusername]()
-+ Name [@githubusername]()
-+ Name [@githubusername]()
-+ Name [@githubusername]()
-+ Eisenberg Family Depression Center [(@DepressionCenter)](https://github.com/DepressionCenter/)
++ Eisenberg Family Depression Center [(@DepressionCenter)](https://github.com/DepressionCenter/).
++ [Beth Plotts](https://mcommunity.umich.edu/person/eplotts) - Manager, HITS EDIS Analytics, Michigan Medicine.
++ [David Clark](https://mcommunity.umich.edu/person/davidrcl) - Business Systems Analyst, Anesthesiology, Michigan Medicine.
++ [Frans Antonissen](https://mcommunity.umich.edu/person/antoniss) - Software Developer, Radiology, Michigan Medicine.
++ [Gabriel Mongefranco](https://gabriel.mongefranco.com) [(@gabrielmongefranco)](https://github.com/gabrielmongefranco) - Mobile Data Architect, Eisenberg Family Depression Center.
++ [Jeremy Gluskin](https://mcommunity.umich.edu/person/jgluskin) [@jerm-ops](https://github.com/jerm-ops) - Revenue Lifecycle System Coordinator, Quality - Patient Safety, Michigan Medicine.
++ [Shelley Boa](https://mcommunity.umich.edu/person/sboa) [@blondilox-ai](https://github.com/blondilox-ai) - Program Manager, Internal Medicine / Pulmonology & Critical Care, Michigan Medicine.
++ [Yuhao Gu](https://mcommunity.umich.edu/person/yuhaog) - Business Analyst, Environmental Services Administration, Michigan Medicine.
 
 
 
 #### This work is based in part on the following projects, libraries and/or studies:
-+ None
-+ __OR__ < Library or project name > - < link >
++ Eisenberg Family Depression Center - [TrackMaster: Membership Tracking Tool](https://michmed.org/trackmaster) and various [other repos](https://github.com/orgs/DepressionCenter/repositories).
++ [PnP List Formatting Examples](https://pnp.github.io/List-Formatting/)
 
 
 
