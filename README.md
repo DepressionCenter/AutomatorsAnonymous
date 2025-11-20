@@ -1,48 +1,55 @@
 ![Depression Center Logo](https://github.com/DepressionCenter/.github/blob/main/images/EFDCLogo_375w.png "depressioncenter.org")
 
-# <Repository Title>
+# Automators Anonymous: Power Automate Lab @ UMich
 
 ## Description
-<Program/Library name> is a < program/library/collection of scripts > for < description of what it does and what problem it solves >.
+Tidbits of code for Power Automate, Power Query, Power BI, Power Apps, SharePoint, AI and other cool technologies, from the attendees of the Power Automate Lab at the University of Michigan / Michigan Medicine.
 
 
 
 ## Quick Start Guide
-+ < Short compile/run instructions, without too much detail >
++ See individual README files for instructions. Each folder contains independent code.
 
 
 
 ## Documentation
-+ The full documentation is available at: < Link to manual, wiki, full documentation, etc. >
-+ __OR__ Detailed setup and use instructions are available in the companion knowledge base article, [ article_title ]( link ).
++ Further documentation maybe available at the Depression Center's Health Research Resource Library Knowledge Base: [https://michmed.org/efdc-kb](https://michmed.org/efdc-kb?ID=41def269-3e66-42e9-b2c6-1e631e23c837).
 
 
 
 
 ## Additional Resources
-+ < Links to study website, related projects, etc. >
++ Eisenberg Family Depression Center - [Health Research Resource Library](https://teamdynamix.umich.edu/TDClient/210/DepressionCenter/Home/)
++ Microsoft - [Fluent UI Styles](https://developer.microsoft.com/en-us/fluentui#/styles)
++ [PnP Microsoft 365 & Power Platform Community](https://pnp.github.io/)
++ [PnP List Formatting Examples](https://pnp.github.io/List-Formatting/)
++ University of Michigan - [UM-GPT](https://umgpt.umich.edu/) (UM login required)
+
 
 
 
 ## About the Team
-< 1-2 paragraphs about your department, core, lab, study team, class or project. This is your marketing space! >
-
-Learn more at: < link to dept/lab/project website >
+The Power Automate Lab started as a means to collaborate and problem-solve together. It is comprised of Power Platform developers from all walks of life, at different business and IT positions throughout Michigan Medicine and University of Michigan. We jokingly called our first in-person meeting the "Automators Anonymous" meeting, so the name seemed fitting for this code repository.
 
 
 
 ## Contact
 To get in touch, contact the individual developers in the check-in history.
 
-If you need assistance identifying a contact person, email the project maintainers at: < dept/lab/mcommunity group email address >.
+If you need assistance identifying a contact person, email the project maintainers at: efdc-mobiletech@umich.edu.
 
 
 
 ## Credits
 #### Contributors:
++ Gabriel Mongefranco [(@gabrielmongefranco)](https://github.com/gabrielmongefranco) - Mobile Data Architect, Eisenberg Family Depression Center. https://gabriel.mongefranco.com
++ Jeremy Gluskin [@jerm-ops](https://github.com/jerm-ops) - Revenue Lifecycle System Coordinator, MM Quality - Patient Safety, Michigan Medicine.
++ Shelley Boa [@blondilox-ai](https://github.com/blondilox-ai) - Program Manager, MM Int Med-Pulm./Critical Care, Michigan Medicine.
++ Name [@githubusername]()
++ Name [@githubusername]()
++ Name [@githubusername]()
++ Name [@githubusername]()
 + Eisenberg Family Depression Center [(@DepressionCenter)](https://github.com/DepressionCenter/)
-+ Gabriel Mongefranco [(@gabrielmongefranco)](https://github.com/gabrielmongefranco)
-+ Name [ @githubusername ]( link to github profile or website )
 
 
 
