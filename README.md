@@ -47,8 +47,8 @@ If you need assistance identifying a contact person, email the project maintaine
 + [David Clark](https://mcommunity.umich.edu/person/davidrcl) - Business Systems Analyst, Anesthesiology, Michigan Medicine.
 + [Frans Antonissen](https://mcommunity.umich.edu/person/antoniss) - Software Developer, Radiology, Michigan Medicine.
 + [Gabriel Mongefranco](https://gabriel.mongefranco.com) [(@gabrielmongefranco)](https://github.com/gabrielmongefranco) - Mobile Data Architect, Eisenberg Family Depression Center.
-+ [Jeremy Gluskin](https://mcommunity.umich.edu/person/jgluskin) [@jerm-ops](https://github.com/jerm-ops) - Revenue Lifecycle System Coordinator, Quality - Patient Safety, Michigan Medicine.
-+ [Shelley Boa](https://mcommunity.umich.edu/person/sboa) [@blondilox-ai](https://github.com/blondilox-ai) - Program Manager, Internal Medicine / Pulmonology & Critical Care, Michigan Medicine.
++ [Jeremy Gluskin](https://mcommunity.umich.edu/person/jgluskin) [(@jerm-ops)](https://github.com/jerm-ops) - Revenue Lifecycle System Coordinator, Quality - Patient Safety, Michigan Medicine.
++ [Shelley Boa](https://mcommunity.umich.edu/person/sboa) [(@blondilox-ai)](https://github.com/blondilox-ai) - Program Manager, Internal Medicine / Pulmonology & Critical Care, Michigan Medicine.
 + [Yuhao Gu](https://mcommunity.umich.edu/person/yuhaog) - Business Analyst, Environmental Services Administration, Michigan Medicine.
 
 
