@@ -6,6 +6,9 @@
 Flows for running regular expressions in Power Automate using an external REST-based API. This example uses a flow in TeamDynamix iPaaS to expose a service to process a regular expression and text. It receives the regex and text via HTTP, processes the regex in JavaScript, and returns the results in JSON format. In the Power Automate side, the example shows how to call this RegEx Service using the HTTP connector.
 
 
+<img width="1694" height="516" alt="image" src="https://github.com/user-attachments/assets/19bd7d48-d286-40d7-a2cc-07e3a2ea664f" />
+
+
 
 ## Quick Start Guide
 + _Non U-M users:_ In TDX iPaaS, create a new flow by importing a definition, and paste the contents of [Service/iPaaS/RegExService.json](https://github.com/DepressionCenter/AutomatorsAnonymous/blob/main/RegExService/Service/iPaaS/RegExService.json). Alternatively, extract just the JavaScript if you plan to write the API in a different platform or web server. Once the RegEx Service is up and running, copy the URL.
