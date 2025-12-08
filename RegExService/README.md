@@ -13,10 +13,7 @@ Flows for running regular expressions in Power Automate using an external REST-b
 ## Quick Start Guide
 + _Non U-M users:_ In TDX iPaaS, create a new flow by importing a definition, and paste the contents of [Service/iPaaS/RegExService.json](https://github.com/DepressionCenter/AutomatorsAnonymous/blob/main/RegExService/Service/iPaaS/RegExService.json). Alternatively, extract just the JavaScript if you plan to write the API in a different platform or web server. Once the RegEx Service is up and running, copy the URL.
 + _U-M users:_ Please request the URL to the RegEx Service from the Mobile Technologies Core (efdc-mobiletech@umich.edu).
-+ Download the flow definition ( [Client/PowerAutomate/RegExClient.zip](https://github.com/DepressionCenter/AutomatorsAnonymous/blob/main/RegExService/Client/PowerAutomate/RegExClient.zip) ) and import it into [Power Automate](https://make.powerautomate.com). Alternatively, create a flow with three actions (steps):
-  + Compose: Enter the input parameters in JSON format
-  + HTTP: Paste the RegEx Service URL into the URI field, change the method to POST, add a parameter WaitForResults=true, and put the results of the previous compose into the Body
-  + Parse JSON: Enter the Body of the previous HTTP action in Content, and click "Use sample payload to generate schema". Use this as the sample: {"data":{"ResultValue":[""],"ResultCode":200}}
++ Download the flow definition ( [Client/PowerAutomate/RegExClient.zip](https://github.com/DepressionCenter/AutomatorsAnonymous/blob/main/RegExService/Client/PowerAutomate/RegExClient.zip) ) and import it into [Power Automate](https://make.powerautomate.com) and import it into Power Automate.
 + In Power Automate, edit the HTTP action and paste the correct RegEx Service URL
 + Run the Power Automate flow to test it
   + Sample input: {"Text": "This is a famous test", "Pattern": "famous+.*","Method": "match"}
@@ -25,8 +22,7 @@ Flows for running regular expressions in Power Automate using an external REST-b
 
 
 ## Documentation
-+ Further documentation maybe available at the Depression Center's Health Research Resource Library Knowledge Base: [https://michmed.org/efdc-kb](https://michmed.org/efdc-kb?ID=41def269-3e66-42e9-b2c6-1e631e23c837).
-
++ Detailed documentation is available in the companion knowledge base article at: https://teamdynamix.umich.edu/TDClient/210/DepressionCenter/KB/ArticleDet?ID=14567
 
 
 
