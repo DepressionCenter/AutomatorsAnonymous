@@ -1,0 +1,193 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"logicAppName": {
+			"type": "String",
+			"metadata": {
+				"description": "RegExClient"
+			}
+		},
+		"logicAppLocation": {
+			"defaultValue": "[resourceGroup().location]",
+			"allowedValues": [
+				"eastasia",
+				"southeastasia",
+				"centralus",
+				"eastus",
+				"eastus2",
+				"westus",
+				"northcentralus",
+				"southcentralus",
+				"northeurope",
+				"westeurope",
+				"japanwest",
+				"japaneast",
+				"brazilsouth",
+				"australiaeast",
+				"australiasoutheast",
+				"southindia",
+				"centralindia",
+				"westindia",
+				"canadacentral",
+				"canadaeast",
+				"uaecentral",
+				"westcentralus",
+				"westus2",
+				"[resourceGroup().location]"
+			],
+			"type": "String",
+			"metadata": {
+				"description": "Location of the logic app."
+			}
+		}
+	},
+	"resources": [
+		{
+			"type": "Microsoft.Logic/workflows",
+			"apiVersion": "2016-06-01",
+			"name": "[parameters('logicAppName')]",
+			"location": "[parameters('logicAppLocation')]",
+			"properties": {
+				"state": "Disabled",
+				"definition": {
+					"$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+					"contentVersion": "undefined",
+					"parameters": {
+						"$authentication": {
+							"defaultValue": {},
+							"type": "SecureObject"
+						},
+						"$connections": {
+							"defaultValue": {},
+							"type": "Object"
+						}
+					},
+					"triggers": {
+						"manual": {
+							"type": "Request",
+							"kind": "Button",
+							"inputs": {
+								"schema": {
+									"type": "object",
+									"properties": {},
+									"required": []
+								}
+							}
+						}
+					},
+					"actions": {
+						"Create_RegEx_Service_Request_Body": {
+							"runAfter": {},
+							"type": "Compose",
+							"inputs": {
+								"Text": "This is a famous test",
+								"Pattern": "famous+.*",
+								"Flags": "gim",
+								"Method": "match",
+								"Replacement": ""
+							}
+						},
+						"Send_HTTP_POST_Request_to_RegEx_Service": {
+							"runAfter": {
+								"Create_RegEx_Service_Request_Body": [
+									"Succeeded"
+								]
+							},
+							"type": "Http",
+							"inputs": {
+								"uri": "https://GET-URL-FROM-EFDC-MOBILE-TECH-CORE.umich.edu",
+								"method": "POST",
+								"queries": {
+									"WaitForResults": "true"
+								},
+								"body": "@outputs('Create_RegEx_Service_Request_Body')"
+							},
+							"runtimeConfiguration": {
+								"contentTransfer": {
+									"transferMode": "Chunked"
+								}
+							}
+						},
+						"Parse_JSON_Result_from_RegEx_Service": {
+							"runAfter": {
+								"Send_HTTP_POST_Request_to_RegEx_Service": [
+									"Succeeded"
+								]
+							},
+							"type": "ParseJson",
+							"inputs": {
+								"content": "@body('Send_HTTP_POST_Request_to_RegEx_Service')",
+								"schema": {
+									"type": "object",
+									"properties": {
+										"customerId": {
+											"type": "integer"
+										},
+										"flowOccurrenceId": {
+											"type": "integer"
+										},
+										"flowOccurrencePId": {
+											"type": "string"
+										},
+										"status": {
+											"type": "string"
+										},
+										"userStatus": {
+											"type": "integer"
+										},
+										"data": {
+											"type": "object",
+											"properties": {
+												"ResultValue": {
+													"type": "array",
+													"items": {
+														"type": "string"
+													}
+												},
+												"ResultCode": {
+													"type": "integer"
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"description": "Tests the RegEx Service, a TDX iPaaS flow to run regular expressions against the specified text."
+				},
+				"parameters": {},
+				"runtimeConfiguration": {
+					"lifetime": {
+						"unit": "Day",
+						"count": 30
+					},
+					"collections": {
+						"maximumItemCount": 100000
+					},
+					"performanceProfile": {
+						"throttles": {
+							"mode": "High"
+						}
+					},
+					"retryPolicy": {
+						"type": "Exponential",
+						"interval": "PT5M",
+						"count": 2,
+						"minimumInterval": "PT5M",
+						"maximumInterval": "PT1H"
+					},
+					"usageConfiguration": {
+						"name": "USER-7DD5F4FF6642423189CBC2F3B71F50CF"
+					}
+				},
+				"integrationAccount": {
+					"name": "1f41d613d3a14ead918d2a25b10de330-westus",
+					"id": "subscriptions/cbd472fe-eafa-4c32-b348-555abce6f9ba/resourceGroups/1f41d613d3a14ead918d2a25b10de330-ia/providers/Microsoft.Logic/integrationAccounts/1f41d613d3a14ead918d2a25b10de330-westus",
+					"type": "Microsoft.Logic/integrationAccounts"
+				}
+			}
+		}
+	]
+}

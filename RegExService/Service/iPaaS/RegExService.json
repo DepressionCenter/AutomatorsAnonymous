@@ -1,0 +1,160 @@
+{
+  "_license": "This file is part of RegEx Service. Copyright © 2025 The Regents of the University of Michigan. This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.",
+  "TdxIpaasVersion": "1.0",
+  "ItemPId": "0cc00bc1-dee9-4f53-91d3-20e153c3aaed",
+  "ItemType": "Flow",
+  "Description": "Runs a regular expression (RegEx) against a string, and returns the results.\r\nFor more information, see https://github.com/DepressionCenter/AutomatorsAnonymous/RegExService\r\n",
+  "Name": "RegEx Service",
+  "Tags": [
+    "Endpoint"
+  ],
+  "Item": {
+    "ShortName": "runregex",
+    "FlowStep": {
+      "id": 0,
+      "stepType": "Flow",
+      "datasetName": "Global",
+      "name": "MyFlow",
+      "usesDataset": true,
+      "datasetId": "$ds$0",
+      "steps": [
+        {
+          "id": 1,
+          "datasetName": "InputParameters",
+          "stepType": "Start",
+          "usesDataset": true,
+          "datasetId": "$ds$1",
+          "outputDataModel": {
+            "type": "Group",
+            "name": "InputParameters",
+            "attributes": {"display":"DefOnly"},
+            "items": [
+              {
+                "type": "Value",
+                "name": "Text",
+                "attributes": {"dataType":"String"}
+              },
+              {
+                "type": "Value",
+                "name": "Pattern",
+                "attributes": {"dataType":"String"}
+              },
+              {
+                "type": "Value",
+                "name": "Flags",
+                "attributes": {"dataType":"String"}
+              },
+              {
+                "type": "Value",
+                "name": "Method",
+                "attributes": {"dataType":"String"}
+              },
+              {
+                "type": "Value",
+                "name": "Replacement",
+                "attributes": {"dataType":"String"}
+              }
+            ]
+          },
+          "steps": [
+            {
+              "id": -4,
+              "stepType": "Data",
+              "datasetName": "FlowInfo",
+              "persistedScope": "FlowInfoStatic",
+              "flowInfoStaticVersion": 5,
+              "usesDataset": true,
+              "datasetMutable": true,
+              "isPersisted": true,
+              "datasetId": "$ds$-4",
+              "outputDataModel": {
+                "type": "Group",
+                "name": "FlowInfo",
+                "attributes": {"readOnly":true},
+                "items": [
+                  {
+                    "type": "Value",
+                    "name": "ApplicationName",
+                    "attributes": {"dataType":"String","label":"Application Name","readOnly":true}
+                  },
+                  {
+                    "type": "Value",
+                    "name": "Environment",
+                    "attributes": {"dataType":"String","label":"Environment","readOnly":true}
+                  },
+                  {
+                    "type": "Value",
+                    "name": "FlowId",
+                    "attributes": {"dataType":"Integer","label":"Flow Id","readOnly":true}
+                  },
+                  {
+                    "type": "Value",
+                    "name": "FlowVersion",
+                    "attributes": {"dataType":"Integer","label":"Flow Id","readOnly":true}
+                  },
+                  {
+                    "type": "Value",
+                    "name": "FlowOccurrenceId",
+                    "attributes": {"dataType":"Integer","label":"Flow Occurrence Id","readOnly":true}
+                  },
+                  {
+                    "type": "Value",
+                    "name": "FlowName",
+                    "attributes": {"dataType":"String","label":"Flow Name","readOnly":true}
+                  },
+                  {
+                    "type": "Value",
+                    "name": "Source",
+                    "attributes": {"dataType":"String","label":"Source","readOnly":true}
+                  },
+                  {
+                    "type": "Value",
+                    "name": "StartTime",
+                    "attributes": {"dataType":"DateTime","label":"Start time","readOnly":true}
+                  },
+                  {
+                    "type": "Value",
+                    "name": "IPAddress",
+                    "attributes": {"dataType":"String","label":"IP Address","readOnly":true}
+                  },
+                  {
+                    "type": "Value",
+                    "name": "TrackingValue",
+                    "attributes": {"dataType":"String","label":"Tracking Value"}
+                  }
+                ]
+              }
+            },
+            {
+              "id": 3,
+              "stepType": "Script",
+              "datasetName": "JSRegEx",
+              "usesDataset": true,
+              "scriptExpression": {"type":"Script","name":"JSRegEx","script":"// This file is part of RegEx Service\r\n// Run RegEx flow - JSRegEx JavaScript task\r\n// Author(s): Gabriel Mongefranco.\r\n// Created: 2025-12-09\r\n// Summary: This JavaScript task validates input parameters and executes the requested regular expression.\r\n// Notes: See README file for documentation and full license information.\r\n// \r\n// Copyright © 2025 The Regents of the University of Michigan\r\n// \r\n// This program is free software: you can redistribute it and/or modify\r\n// it under the terms of the GNU General Public License as published by\r\n// the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\r\n// This program is distributed in the hope that it will be useful,\r\n// but WITHOUT ANY WARRANTY; without even the implied warranty of\r\n// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\r\n// GNU General Public License for more details.\r\n// You should have received a copy of the GNU General Public License along\r\n// with this program. If not, see <https://www.gnu.org/licenses/>.\r\n\r\n// Note: All code must be compatible with ECMAScript 11.0 (2020) to run in a TDX iPaaS Script task.\r\n\r\n// Return variable required by iPaaS\r\nvar result = {};\r\n\r\n// Result placeholder\r\nvar resultValue;\r\nvar resultCode = 200;\r\n\r\n// Get input values and set defaults\r\nvar text = (InputParameters.Text ? InputParameters.Text : \"\");\r\nvar pattern = (InputParameters.Pattern ? InputParameters.Pattern : \"\");\r\nvar flags = (InputParameters.Flags ? InputParameters.Flags : \"\").replaceAll(\"/\",\"\").trim().toLowerCase();\r\nvar method = (InputParameters.Method ? InputParameters.Method : \"match\").trim();\r\nvar replacement = (InputParameters.Replacement ? InputParameters.Replacement : undefined);\r\n\r\nvar regex = new RegExp(pattern, flags);\r\n\r\ntry {\r\n    // Validate string length and pattern length\r\n    if (text.length > 20000) throw \"Input text too long (maximum allowed is 20,000 characters).\";\r\n    if (pattern.length > 200) throw \"Pattern too long (maximum allowed is 200 characters).\";\r\n\r\n    // Allow only supported regex flags\r\n    var allowedFlags = \"gimsuy\";\r\n    var flags = (InputParameters.Flags ? InputParameters.Flags : \"\").trim().toLowerCase().split('').filter(f => allowedFlags.includes(f)).join('');\r\n\r\n\t// Set default values\r\n    var method = (InputParameters.Method ? InputParameters.Method : \"match\").trim().toLowerCase();\r\n    var replacement = (InputParameters.Replacement ? InputParameters.Replacement : undefined);\r\n    var resultValue = [\"\"];\r\n    var resultCode = 200;\r\n\r\n    let regex;\r\n    try {\r\n        // Regex construction may throw for malformed patterns\r\n        regex = new RegExp(pattern, flags);\r\n    } catch (e) {\r\n        return {\"ResultValue\": \"Error: Invalid regex pattern.\", \"ResultCode\": 400};\r\n    }\r\n\r\n    switch(method) {\r\n        case \"match\":\r\n            resultValue = text.match(regex);\r\n            break;\r\n        case \"matchall\":\r\n            resultValue = Array.from(text.matchAll(regex));\r\n            break;\r\n        case \"replace\":\r\n            if (replacement !== undefined) {\r\n                resultValue = text.replace(regex, replacement);\r\n            } else {\r\n                resultValue = \"Error: Replacement string not specified.\";\r\n                resultCode = 400;\r\n            }\r\n            break;\r\n        case \"replaceall\":\r\n\t\t\tif (replacement !== undefined) {\r\n\t\t\t\t// Work around for replaceAll compatibility with ECMAScript 11, used by iPaaS\r\n\t\t\t\tlet replaceAllFlags = flags.includes('g') ? flags : flags + 'g';\r\n\t\t\t\tlet regexGlobal = new RegExp(pattern, replaceAllFlags);\r\n\t\t\t\tresultValue = text.replace(regexGlobal, replacement);\r\n\t\t\t} else {\r\n\t\t\t\tresultValue = \"Error: Replacement string not specified.\";\r\n\t\t\t\tresultCode = 400;\r\n\t\t\t}\r\n\t\t\tbreak;\r\n        case \"search\":\r\n            resultValue = text.search(regex);\r\n            break;\r\n        case \"split\":\r\n            resultValue = text.split(regex);\r\n            break;\r\n        default:\r\n            resultValue = \"Error: Unknown method '\" + method + \"'. Method must be one of the following: match, matchAll, replace, replaceAll, search, split.\";\r\n            resultCode = 400;\r\n    }\r\n\r\n    // Limit result size\r\n    if (Array.isArray(resultValue) && resultValue.length > 20000)\r\n        resultValue = \"Error: Too many results. Refine your pattern.\";\r\n\r\n    result = {\"ResultValue\": resultValue, \"ResultCode\": resultCode};\r\n\r\n} catch (error) {\r\n    result = {\"ResultValue\": \"Error: \" + error.toString(), \"ResultCode\": 500};\r\n}\r\n\r\n// Return result\r\nreturn result;","returnVariable":"result"},
+              "datasetId": "$ds$3",
+              "outputDataModel": {
+                "type": "Value",
+                "name": "JSRegEx"
+              }
+            },
+            {
+              "id": 2,
+              "stepType": "End",
+              "returnExpression": {"type":"Identifier","value":"$ds$3"},
+              "userStatusExpression": {"type":"Function","name":"textToNumber","parameterValues":[{"type":"Function","name":"extract","parameterValues":[{"type":"Identifier","value":"$ds$3"},{"type":"StringLiteral","value":"ResultCode"},null]}]},
+              "usesDataset": true,
+              "datasetId": "$ds$2"
+            }
+          ]
+        },
+        {
+          "id": -2,
+          "stepType": "Clipboard"
+        }
+      ]
+    },
+    "Options": {
+      "allowHookTrigger": true
+    }
+  }
+}
