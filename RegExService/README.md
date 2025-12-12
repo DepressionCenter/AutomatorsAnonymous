@@ -13,7 +13,7 @@ Flows for running regular expressions in Power Automate using an external REST-b
 ## Quick Start Guide
 + _Non U-M users:_ In TDX iPaaS, create a new flow by importing a definition, and paste the contents of [Service/iPaaS/RegExService.json](https://github.com/DepressionCenter/AutomatorsAnonymous/blob/main/RegExService/Service/iPaaS/RegExService.json). Alternatively, extract just the JavaScript if you plan to write the API in a different platform or web server. Once the RegEx Service is up and running, copy the URL.
 + _U-M users:_ Please request the URL to the RegEx Service from the Mobile Technologies Core (efdc-mobiletech@umich.edu).
-+ Download the flow definition ( [Client/PowerAutomate/RegExClient.zip](https://github.com/DepressionCenter/AutomatorsAnonymous/blob/main/RegExService/Client/PowerAutomate/RegExClient.zip) ) and import it into [Power Automate](https://make.powerautomate.com) and import it into Power Automate.
++ Download the flow definition ( [Client/PowerAutomate/RegExClient.zip](https://github.com/DepressionCenter/AutomatorsAnonymous/blob/main/RegExService/Client/PowerAutomate/RegExClient.zip) ) and import it into [Power Automate](https://make.powerautomate.com) (use legacy import).
 + In Power Automate, edit the HTTP action and paste the correct RegEx Service URL
 + Run the Power Automate flow to test it
   + Sample input: {"Text": "This is a famous test", "Pattern": "famous+.*","Method": "match"}
