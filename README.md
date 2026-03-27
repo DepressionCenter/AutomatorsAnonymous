@@ -9,6 +9,10 @@ Tidbits of code for Power Automate, Power Query, Power BI, Power Apps, SharePoin
 
 ## Quick Start Guide
 + See individual README files for instructions. Each folder contains independent code.
+### Projects:
++ [DataLaVista](https://github.com/depressioncenter/datalavista): Tell your expensive BI tools: "Data la vista, baby!" 🕶️
++ [DontDeleteMyEmail](https://github.com/DepressionCenter/DontDeleteMyEmail): Collection of solutions to the "IT is going to delete my old emails" problem, using Power Automate or other tools.
++ [RegExService](https://github.com/DepressionCenter/AutomatorsAnonymous/tree/main/RegExService): Flows for running regular expressions in Power Automate using an external REST-based API, such as TeamDynamix iPaaS.
 
 
 
