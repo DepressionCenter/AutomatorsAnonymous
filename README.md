@@ -47,13 +47,14 @@ If you need assistance identifying a contact person, email the project maintaine
 ## Credits
 #### Contributors:
 + Eisenberg Family Depression Center [(@DepressionCenter)](https://github.com/DepressionCenter/).
-+ [Beth Plotts](https://mcommunity.umich.edu/person/eplotts) - Manager, HITS EDIS Analytics, Michigan Medicine.
-+ [David Clark](https://mcommunity.umich.edu/person/davidrcl) - Business Systems Analyst, Anesthesiology, Michigan Medicine.
++ [Beth Plotts](https://www.linkedin.com/in/elizabeth-plotts-46a5a349) - Manager, HITS EDIS Analytics, Michigan Medicine.
++ [David Clark](https://www.linkedin.com/in/davidclark23) - Business Systems Analyst, Anesthesiology, Michigan Medicine.
 + [Frans Antonissen](https://mcommunity.umich.edu/person/antoniss) - Software Developer, Radiology, Michigan Medicine.
 + [Gabriel Mongefranco](https://gabriel.mongefranco.com) [(@gabrielmongefranco)](https://github.com/gabrielmongefranco) - Mobile Data Architect, Eisenberg Family Depression Center.
-+ [Jeremy Gluskin](https://mcommunity.umich.edu/person/jgluskin) [(@jerm-ops)](https://github.com/jerm-ops) - Revenue Lifecycle System Coordinator, Quality - Patient Safety, Michigan Medicine.
-+ [Shelley Boa](https://mcommunity.umich.edu/person/sboa) [(@blondilox-ai)](https://github.com/blondilox-ai) - Program Manager, Internal Medicine / Pulmonology & Critical Care, Michigan Medicine.
-+ [Yuhao Gu](https://mcommunity.umich.edu/person/yuhaog) - Business Analyst, Environmental Services Administration, Michigan Medicine.
++ [Jeremy Gluskin](https://www.linkedin.com/in/jeremy-gluskin-16980623/) [(@jerm-ops)](https://github.com/jerm-ops) - Revenue Lifecycle System Coordinator, Quality - Patient Safety, Michigan Medicine.
++ [Shelley Boa](https://www.linkedin.com/in/shelleyboa/) [(@blondilox-ai)](https://github.com/blondilox-ai) - Program Manager, Internal Medicine / Pulmonology & Critical Care, Michigan Medicine.
++ [TJ Petras](https://www.linkedin.com/in/tjpetras) - Business Systems Analyst, Facilities Administration, Michigan Medicine.
++ [Yuhao Gu](https://www.linkedin.com/in/yuhaogu) - Business Analyst, Environmental Services Administration, Michigan Medicine.
 
 
 
