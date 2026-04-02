@@ -1,9 +1,9 @@
 ![Depression Center Logo](https://github.com/DepressionCenter/.github/blob/main/images/EFDCLogo_375w.png "depressioncenter.org")
 
-# Automators Anonymous™: Power Automate Lab @ UMich
+# Automators Anonymous™
 
 ## Description
-Tidbits of code for Power Automate, Power Query, Power BI, Power Apps, SharePoint, AI and other cool technologies, from the attendees of the Power Automate Lab at the University of Michigan / Michigan Medicine.
+Tidbits of code for Power Automate, Power Query, Power BI, Power Apps, SharePoint, AI and other cool technologies, from the attendees of the Power Automate Lab ran by the Automators Anonymous™ community of practice at the University of Michigan / Michigan Medicine, in collaboration with the Eisenberg Family Depression Center.
 
 
 
