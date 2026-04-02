@@ -1,6 +1,6 @@
 ![Depression Center Logo](https://github.com/DepressionCenter/.github/blob/main/images/EFDCLogo_375w.png "depressioncenter.org")
 
-# Automators Anonymous: Power Automate Lab @ UMich
+# Automators Anonymous™: Power Automate Lab @ UMich
 
 ## Description
 Tidbits of code for Power Automate, Power Query, Power BI, Power Apps, SharePoint, AI and other cool technologies, from the attendees of the Power Automate Lab at the University of Michigan / Michigan Medicine.
@@ -10,8 +10,8 @@ Tidbits of code for Power Automate, Power Query, Power BI, Power Apps, SharePoin
 ## Quick Start Guide
 + See individual README files for instructions. Each folder contains independent code.
 ### Projects:
-+ [DataLaVista](https://github.com/depressioncenter/datalavista): Tell your expensive BI tools: "Data la vista, baby!" 🕶️
-+ [DontDeleteMyEmail](https://github.com/DepressionCenter/DontDeleteMyEmail): Collection of solutions to the "IT is going to delete my old emails" problem, using Power Automate or other tools.
++ [DataLaVista](https://github.com/depressioncenter/datalavista): Tell your expensive BI tools: "Data la vista, baby!" ™ 🕶️
++ [DontDeleteMyEmail](https://github.com/DepressionCenter/DontDeleteMyEmail): Collection of solutions to the "IT is going to delete my old emails" ™ problem, using Power Automate or other tools.
 + [RegExService](https://github.com/DepressionCenter/AutomatorsAnonymous/tree/main/RegExService): Flows for running regular expressions in Power Automate using an external REST-based API, such as TeamDynamix iPaaS.
 
 
@@ -33,7 +33,7 @@ Tidbits of code for Power Automate, Power Query, Power BI, Power Apps, SharePoin
 
 
 ## About the Team
-The Power Automate Lab started as a means to collaborate and problem-solve together. It is comprised of Power Platform users from different business, research and IT positions throughout Michigan Medicine and University of Michigan. We jokingly called our first in-person meeting the "Automators Anonymous" meeting, so the name seemed fitting for this code repository.
+The Power Automate Lab™ started as a means to collaborate and problem-solve together. It is comprised of Power Platform users from different business, research and IT positions throughout Michigan Medicine and University of Michigan. We jokingly called our first in-person meeting the "Automators Anonymous" ™ meeting, and the name stuck, so it became the name for this repository and for the group.
 
 
 
@@ -66,7 +66,8 @@ If you need assistance identifying a contact person, email the project maintaine
 
 ## License
 ### Copyright Notice
-Copyright © 2025 The Regents of the University of Michigan
+Automators Anonymous™ is a trademark of The Regents of the University of Michigan.
+Copyright © 2025 The Regents of the University of Michigan.
 
 
 ### Software and Library License Notice
