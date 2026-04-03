@@ -5,6 +5,8 @@
 ## Description
 Tidbits of code for Power Automate, Power Query, Power BI, Power Apps, SharePoint, AI and other cool technologies, from the attendees of the Power Automate Lab ran by the Automators Anonymous™ community of practice at the University of Michigan / Michigan Medicine, in collaboration with the Eisenberg Family Depression Center.
 
+**Automators Anonymous™** is an invite-only Community of Practice (CoP) comprising elite analysts, program managers, database architects, and developers from across Michigan Medicine and the University of Michigan. We don't just use technology; we push its absolute boundaries. Together, we leverage AI, Power Platform, and other cutting-edge tools to engineer creative tech solutions, smash bottlenecks, and redefine what's possible in research, business, clinical and IT workflows.
+
 
 
 ## Quick Start Guide
