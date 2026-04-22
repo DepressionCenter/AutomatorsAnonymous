@@ -1,0 +1,608 @@
+<!--
+This file is part of Automators Anonymous™
+MM-showcase-home.html: The landing page for the internal showcase at Michigan Medicine, embedded into SharePoint via Modern Script Editor.
+Author(s): Gabriel Mongefranco, and the members of the Automators Anonymous™ community of practice.
+Created: 2026-04-21
+Last Modified: 2026-04-21
+Summary: View this internal showcase at Michigan Medicine (login required): https://umhealth.sharepoint.com/sites/AutomatorsAnonymousShowcase
+Notes: See README file for documentation and full license information.
+
+Copyright © 2026 The Regents of the University of Michigan
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License along
+with this program. If not, see <https://www.gnu.org/licenses/>.
+
+-->
+<html>
+<head>
+<style>
+    :root {
+        --umich-blue: #00274C;
+        --umich-maize: #FFCB05;
+        --cyber-cyan: #00E5FF;
+        --dark-bg: #03080f;
+        --panel-bg: rgba(0, 39, 76, 0.4);
+        --text-light: #F0F4F8;
+        --text-muted: #7A8B9E;
+    }
+
+    #aa-terminal-container {
+        font-family: 'Consolas', 'Monaco', 'Segoe UI', monospace;
+        background: radial-gradient(circle at top right, #0a192f 0%, var(--dark-bg) 100%);
+        color: var(--text-light);
+        padding: 40px;
+        border-radius: 4px;
+        box-shadow: 0 0 50px rgba(0,0,0,0.9);
+        overflow: hidden;
+        position: relative;
+        min-height: 900px;
+    }
+
+    /* --- THE INTERACTIVE SPLASH SCREEN --- */
+    #aa-splash {
+        position: absolute;
+        inset: 0;
+        background-color: var(--dark-bg);
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 15vh;
+        transition: background-color 0.5s ease;
+    }
+
+    /* Transparent state so we can see the grid beneath it */
+    #aa-splash.reveal-ui {
+        background-color: transparent;
+        pointer-events: none;
+    }
+
+    /* Init Button State */
+    #aa-start-btn {
+        font-size: 1.5rem;
+        color: var(--umich-maize);
+        border: 2px solid var(--umich-maize);
+        padding: 20px 40px;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        animation: pulseStart 1.5s infinite alternate;
+        margin-top: 20vh;
+        background: rgba(0,0,0,0.5);
+        transition: 0.3s;
+        pointer-events: auto;
+    }
+
+    #aa-start-btn:hover {
+        background: var(--umich-maize);
+        color: #000;
+        box-shadow: 0 0 40px var(--umich-maize);
+    }
+
+    @keyframes pulseStart {
+        0% { box-shadow: 0 0 10px rgba(255, 203, 5, 0.4); }
+        100% { box-shadow: 0 0 30px rgba(255, 203, 5, 0.8); }
+    }
+
+    /* Booting State Containers */
+    #aa-splash-content {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        position: relative;
+    }
+
+    .booting #aa-start-btn { display: none; }
+    .booting #aa-splash-content { display: flex; }
+
+    .aa-splash-logo {
+        width: 450px;
+        filter: drop-shadow(0 0 30px rgba(0, 229, 255, 0.8)) brightness(1.5);
+        animation: logoPulse 0.8s infinite alternate ease-in-out;
+        position: relative;
+        z-index: 1000;
+    }
+
+    /* Splash Contraction to Header - Speeds logo away instantly */
+    #aa-splash.contract .aa-splash-logo {
+        animation: flyToCorner 0.6s cubic-bezier(0.8, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes flyToCorner {
+        0% { transform: scale(1.12) translate(0, 0); opacity: 1; }
+        100% { transform: scale(0.1) translate(-200%, -300%); opacity: 0; }
+    }
+
+    .aa-keyword-container {
+        margin-top: 50px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 100%;
+    }
+
+    .aa-keyword {
+        position: absolute;
+        font-size: 2.5rem;
+        color: var(--umich-maize);
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 6px;
+        opacity: 0;
+        text-align: center;
+        width: 100%;
+        text-shadow: 0 0 20px var(--umich-maize);
+    }
+
+    /* 15 Keywords, 0.3s stagger */
+    .booting .kw-1 { animation: flashText 0.35s 0.2s forwards; }
+    .booting .kw-2 { animation: flashText 0.35s 0.5s forwards; }
+    .booting .kw-3 { animation: flashText 0.35s 0.8s forwards; }
+    .booting .kw-4 { animation: flashText 0.35s 1.1s forwards; }
+    .booting .kw-5 { animation: flashText 0.35s 1.4s forwards; }
+    .booting .kw-6 { animation: flashText 0.35s 1.7s forwards; }
+    .booting .kw-7 { animation: flashText 0.35s 2.0s forwards; }
+    .booting .kw-8 { animation: flashText 0.35s 2.3s forwards; }
+    .booting .kw-9 { animation: flashText 0.35s 2.6s forwards; }
+    .booting .kw-10 { animation: flashText 0.35s 2.9s forwards; }
+    .booting .kw-11 { animation: flashText 0.35s 3.2s forwards; }
+    .booting .kw-12 { animation: flashText 0.35s 3.5s forwards; }
+    .booting .kw-13 { animation: flashText 0.35s 3.8s forwards; }
+    .booting .kw-14 { animation: flashText 0.35s 4.1s forwards; }
+    .booting .kw-15 { animation: flashText 0.35s 4.4s forwards; }
+
+    .aa-uplink-text {
+        margin-top: 40px;
+        color: var(--cyber-cyan);
+        font-size: 1rem;
+        letter-spacing: 4px;
+        animation: fastPulse 0.3s infinite alternate;
+    }
+    #aa-splash.contract .aa-uplink-text { display: none; }
+
+    @keyframes flashText {
+        0% { opacity: 0; transform: translateY(50px) scale(1); }
+        30% { opacity: 1; transform: translateY(0px) scale(1.2); }
+        70% { opacity: 1; transform: translateY(0px) scale(1.2); }
+        100% { opacity: 0; transform: translateY(-80px) scale(0.5); }
+    }
+
+    @keyframes logoPulse {
+        0% { filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.6)) brightness(1.2); transform: scale(1); }
+        100% { filter: drop-shadow(0 0 60px rgba(0, 229, 255, 1)) brightness(1.8); transform: scale(1.12); }
+    }
+
+    @keyframes fastPulse {
+        0% { opacity: 0.3; }
+        100% { opacity: 1; text-shadow: 0 0 15px var(--cyber-cyan); }
+    }
+
+    /* --- THE SHOWCASE CONTENT --- */
+    .aa-main-content {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.5s ease;
+    }
+
+    .aa-main-content.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .aa-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 60px;
+        border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+        padding-bottom: 20px;
+    }
+
+    .aa-brand { display: flex; align-items: center; gap: 20px; }
+    .aa-logo-small { width: 100px; filter: drop-shadow(0 0 10px var(--cyber-cyan)); }
+    
+    .aa-status-box {
+        text-align: right;
+        font-size: 0.75rem;
+        color: var(--cyber-cyan);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        line-height: 1.6;
+    }
+
+    .aa-hero-quote {
+        font-size: 2.2rem;
+        font-weight: 900;
+        text-align: center;
+        margin: 40px 0;
+        background: linear-gradient(to right, #fff 20%, var(--cyber-cyan) 50%, var(--umich-maize) 80%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -1px;
+    }
+
+    /* --- STAGGERED PROJECT GRID --- */
+    .aa-project-section { margin-top: 20px; }
+    .aa-section-label {
+        font-size: 0.9rem;
+        color: var(--cyber-cyan);
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        margin-bottom: 30px;
+        display: block;
+    }
+
+    .aa-stagger-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px 40px;
+        padding: 20px 0;
+    }
+
+    .aa-stagger-grid > div:nth-child(even) { margin-top: 80px; }
+
+    /* The Card Base */
+    .aa-project-card {
+        background: var(--panel-bg);
+        border: 1px solid rgba(0, 229, 255, 0.1);
+        position: relative;
+        backdrop-filter: blur(10px);
+        opacity: 0; /* Hidden by default */
+    }
+
+    /* The 1.5s Explosion Animation (For top 3 cards only) */
+    .aa-main-content.active .aa-project-card.explode {
+        animation: cardExplode 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        animation-delay: var(--stagger-delay);
+    }
+
+    @keyframes cardExplode {
+        0% { opacity: 0; transform: translateY(-30vh) scale(0.1); filter: drop-shadow(0 0 50px var(--cyber-cyan)); z-index: 10; }
+        50% { opacity: 1; filter: drop-shadow(0 0 30px var(--cyber-cyan)); transform: translateY(10vh) scale(1.05); }
+        100% { opacity: 1; transform: translateY(0) scale(1); filter: drop-shadow(0 0 0px transparent); z-index: 1; }
+    }
+
+    /* The simple appear animation (For remaining cards) */
+    .aa-main-content.active .aa-project-card.appear {
+        animation: cardAppear 1s ease forwards;
+        animation-delay: var(--stagger-delay);
+    }
+
+    @keyframes cardAppear {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .aa-project-card:hover {
+        border-color: var(--cyber-cyan);
+        box-shadow: 0 0 30px rgba(0, 229, 255, 0.2);
+        transform: scale(1.02) !important;
+        transition: all 0.4s ease;
+    }
+
+    .aa-img-frame {
+        width: 100%; height: 300px; overflow: hidden;
+        border-bottom: 2px solid var(--umich-maize); background: #000;
+    }
+    .aa-img-frame img {
+        width: 100%; height: 100%; object-fit: cover;
+        opacity: 0.7; transition: 0.5s;
+    }
+    .aa-project-card:hover img { opacity: 1; transform: scale(1.1); }
+
+    .aa-card-meta { padding: 30px; }
+    .aa-card-title { font-size: 1.8rem; color: #fff; margin: 0 0 15px 0; text-transform: uppercase; }
+
+    .aa-project-btn {
+        padding: 8px 20px; font-size: 0.8rem; font-weight: bold; text-decoration: none;
+        border: 1px solid var(--umich-maize); color: var(--umich-maize) !important;
+        transition: 0.3s; cursor: pointer;
+    }
+    .aa-project-btn:hover { background: var(--umich-maize); color: #000 !important; }
+
+    /* --- ENCRYPTED DIRECTORY --- */
+    .aa-directory-toggle { margin: 100px auto 40px; text-align: center; }
+
+    #aa-dir-trigger {
+        background: rgba(0, 229, 255, 0.05); border: 1px dashed var(--cyber-cyan);
+        color: var(--cyber-cyan); padding: 12px 40px; cursor: pointer;
+        text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; transition: 0.3s;
+    }
+    #aa-dir-trigger:hover { background: var(--cyber-cyan); color: #000; }
+
+    #aa-directory-content {
+        display: none; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px; margin-top: 20px;
+    }
+
+    .aa-team-mini-card {
+        background: rgba(255,255,255,0.03); padding: 20px 15px; border-radius: 4px;
+        border: 1px solid rgba(255,255,255,0.05); text-align: center; transition: 0.3s;
+    }
+    .aa-team-mini-card:hover { border-color: rgba(0, 229, 255, 0.3); background: rgba(0, 39, 76, 0.6); }
+
+    .aa-mini-avatar {
+        width: 70px; height: 70px; border-radius: 50%; border: 2px solid var(--cyber-cyan);
+        margin-bottom: 15px; object-fit: cover;
+    }
+    .aa-social-links { margin-top: 15px; display: flex; justify-content: center; gap: 12px; }
+    .aa-social-links a { color: var(--cyber-cyan); text-decoration: none; font-size: 0.75rem; opacity: 0.7; }
+    .aa-social-links a:hover { opacity: 1; text-shadow: 0 0 5px var(--cyber-cyan); }
+
+    .aa-footer { margin-top: 100px; font-size: 0.7rem; color: var(--text-muted); text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 40px; }
+
+    /* Accessibility Overrides */
+    @media (prefers-reduced-motion: reduce) {
+        #aa-splash { display: none !important; }
+        .aa-main-content { opacity: 1 !important; pointer-events: auto !important; }
+        .aa-project-card { opacity: 1 !important; transform: none !important; animation: none !important; }
+    }
+</style>
+</head>
+<body>
+
+<audio id="aa-soundtrack">
+    <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=epic-hollywood-trailer-9489.mp3" type="audio/mpeg">
+</audio>
+
+<div id="aa-terminal-container">
+    
+    <div id="aa-splash">
+        <button id="aa-start-btn" onclick="startBootSequence()">[ Click to Initialize System ]</button>
+        
+        <div id="aa-splash-content">
+            <img src="https://umhealth.sharepoint.com/sites/AutomatorsAnonymousShowcase/SiteAssets/images/AutomatorsAnonymous-logo.png" class="aa-splash-logo" alt="AA Logo" onerror="this.style.display='none'">
+            <div class="aa-keyword-container">
+                <span class="aa-keyword kw-1">Power Platform</span>
+                <span class="aa-keyword kw-2">JavaScript</span>
+                <span class="aa-keyword kw-3">HTML/X</span>
+                <span class="aa-keyword kw-4">Generative AI</span>
+                <span class="aa-keyword kw-5">Machine Learning</span>
+                <span class="aa-keyword kw-6">Neural Networks</span>
+                <span class="aa-keyword kw-7">Relentless Curiosity</span>
+                <span class="aa-keyword kw-8">Bold Discovery</span>
+                <span class="aa-keyword kw-9">Rapid Prototyping</span>
+                <span class="aa-keyword kw-10">Reduce Complexity</span>
+                <span class="aa-keyword kw-11">Knowledge Sharing</span>
+                <span class="aa-keyword kw-12">Collective Intelligence</span>
+                <span class="aa-keyword kw-13">Empowering Teams</span>
+                <span class="aa-keyword kw-14">Force Multipliers</span>
+                <span class="aa-keyword kw-15">Radical Collaboration</span>
+            </div>
+            <div class="aa-uplink-text">[ OVERRIDING PROTOCOLS... ]</div>
+        </div>
+    </div>
+
+    <div class="aa-main-content">
+        <div class="aa-header">
+            <div class="aa-brand">
+                <img src="https://umhealth.sharepoint.com/sites/AutomatorsAnonymousShowcase/SiteAssets/images/AutomatorsAnonymous-logo.png" class="aa-logo-small" alt="AA Logo">
+                <div>
+                    <div style="font-size: 1.5rem; font-weight: 900; letter-spacing: 2px;">AUTOMATORS <span style="color:var(--umich-maize)">ANONYMOUS</span></div>
+                    <div style="font-size: 0.7rem; color: var(--cyber-cyan); letter-spacing: 5px;">ELITE SHOWCASE / VER 2026.04</div>
+                </div>
+            </div>
+            <div class="aa-status-box">
+                System: Operational<br>
+                <span style="color:var(--umich-maize)">Access: Granted</span><br>
+                Origin: <a href="https://code.depressioncenter.org/AutomatorsAnonymous/index.html" target="_blank" style="color:var(--cyber-cyan); text-decoration:none;">@AutomatorsAnonymous</a>
+            </div>
+        </div>
+
+        <div class="aa-hero-quote">
+            "We don't just use technology; we push its absolute boundaries."
+        </div>
+
+        <div class="aa-project-section">
+            <span class="aa-section-label">Deployments_</span>
+            <div id="aa-loading" style="text-align:center; padding: 50px; color: var(--cyber-cyan);">Querying Database...</div>
+            <div id="aa-project-grid" class="aa-stagger-grid">
+                </div>
+        </div>
+
+        <div class="aa-directory-toggle">
+            <button id="aa-dir-trigger" onclick="declassifyDirectory()">[ DECLASSIFY DIRECTORY ]</button>
+            <div id="aa-directory-content">
+                </div>
+        </div>
+
+        <div class="aa-footer">
+            <p>AUTOMATORS ANONYMOUS™ SHOWCASE | POWERED BY AI, CREATED BY HUMANS</p>
+            <p>Copyright © 2026 The Regents of the University of Michigan. | <a href="https://depressioncenter.org/mobiletech" target="_blank" style="color:var(--cyber-cyan)">Eisenberg Family Depression Center</a></p>
+        </div>
+    </div>
+</div>
+
+<script>
+// --- ADVANCED ROBUST AUDIO ENGINE ---
+function playAndEnvelopeAudio() {
+    const audio = document.getElementById('aa-soundtrack');
+    
+    // Strict internal volume tracking bypasses JS floating point read errors
+    let currentVol = 0.40; // Start at 40% volume
+    audio.volume = currentVol;
+    
+    // Play the audio
+    audio.play().catch(e => console.warn("Audio blocked by browser."));
+
+    // Step 1: Fade 40% -> 15% over 4.5 seconds (45 steps of 100ms)
+    const targetVol1 = 0.15;
+    const steps1 = 45;
+    const fadeDownAmount1 = (currentVol - targetVol1) / steps1;
+    
+    let fade1 = setInterval(() => {
+        currentVol -= fadeDownAmount1;
+        if (currentVol <= targetVol1) {
+            audio.volume = targetVol1;
+            clearInterval(fade1);
+        } else {
+            audio.volume = currentVol;
+        }
+    }, 100);
+
+    // Step 2: 7-Second fade to 0% starting at 7.5 seconds (after animations complete)
+    setTimeout(() => {
+        let currentVol2 = 0.15;
+        const targetVol2 = 0.0;
+        const steps2 = 120; // 120 steps of 100ms = 12 seconds
+        const fadeDownAmount2 = currentVol2 / steps2;
+        
+        let fade2 = setInterval(() => {
+            currentVol2 -= fadeDownAmount2;
+            if (currentVol2 <= 0) {
+                audio.volume = 0;
+                audio.pause();
+                clearInterval(fade2);
+            } else {
+                audio.volume = currentVol2;
+            }
+        }, 100);
+    }, 7500);
+}
+
+// --- BOOT SEQUENCE LOGIC ---
+function startBootSequence() {
+    const splash = document.getElementById('aa-splash');
+    if(splash.classList.contains('booting')) return; 
+    
+    // 1. Lock in the booting state & fire the custom audio engine
+    splash.classList.add('booting');
+    playAndEnvelopeAudio();
+
+    // 2. The 15 Keywords finish. Fade background, reveal UI, and shrink logo IMMEDIATELY at 4.8s.
+    setTimeout(() => {
+        splash.classList.add('reveal-ui');
+        splash.classList.add('contract'); 
+        document.querySelector('.aa-main-content').classList.add('active');
+    }, 4800); 
+
+    // 3. Clean up the DOM to restore full interactivity once all animations complete
+    setTimeout(() => {
+        splash.style.display = 'none';
+    }, 6500);
+}
+
+// Check Accessibility Preferences
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.getElementById('aa-splash').style.display = 'none';
+    document.querySelector('.aa-main-content').style.opacity = '1';
+    document.querySelector('.aa-main-content').style.pointerEvents = 'auto';
+}
+
+// --- ONE-WAY DIRECTORY DECLASSIFICATION ---
+function declassifyDirectory() {
+    document.getElementById('aa-directory-content').style.display = 'grid';
+    document.getElementById('aa-dir-trigger').style.display = 'none';
+    document.getElementById('aa-directory-content').style.animation = 'fadeInMain 1s ease forwards';
+}
+
+(function() {
+    const siteUrl = window._spPageContextInfo ? _spPageContextInfo.webAbsoluteUrl : window.location.origin + window.location.pathname.substring(0, window.location.pathname.indexOf('/SitePages'));
+    
+    // --- PROJECTS LOGIC ---
+    const listName = 'Projects';
+    const restUrl = `${siteUrl}/_api/web/lists/getbytitle('${listName}')/items?$filter=Featured eq 1&$select=ID,Title,Summary,Preview,Demo,Website,Code,Docs&$orderby=Modified desc`;
+
+    async function fetchProjects() {
+        try {
+            const response = await fetch(restUrl, { headers: { 'Accept': 'application/json;odata=nometadata' } });
+            if (!response.ok) throw new Error('Data fetch failed');
+            const data = await response.json();
+            renderProjects(data.value);
+        } catch (e) { 
+            console.error(e);
+            document.getElementById('aa-loading').innerHTML = 'Offline. Verify connection.';
+        }
+    }
+
+    function renderProjects(items) {
+        document.getElementById('aa-loading').style.display = 'none';
+        let html = '';
+        items.forEach((item, idx) => {
+            let imgUrl = '';
+            try { 
+                const imgObj = JSON.parse(item.Preview);
+                imgUrl = imgObj.serverRelativeUrl || `${siteUrl}/Lists/${listName}/Attachments/${item.ID}/${imgObj.fileName}`;
+            } catch(e) { imgUrl = item.Preview; }
+
+            // Target Top 3 for the explosive entrance, the rest just smoothly appear
+            const isTopThree = idx < 3;
+            const animationClass = isTopThree ? 'explode' : 'appear';
+            
+            // Stagger the first 3 by 0.5s each. The rest appear simultaneously slightly after the fireworks end.
+            const staggerDelay = isTopThree ? idx * 0.5 : 1.5;
+
+            html += `
+                <div class="aa-project-card ${animationClass}" style="--stagger-delay: ${staggerDelay}s;">
+                    <div class="aa-img-frame">
+                        <img src="${imgUrl}" onerror="this.src='https://via.placeholder.com/600x400/03080f/00E5FF?text=PROJECT+UPLINK'">
+                    </div>
+                    <div class="aa-card-meta">
+                        <h3 class="aa-card-title">${item.Title}</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 25px;">${item.Summary || ''}</p>
+                        <div style="display:flex; gap:10px;">
+                            ${item.Website ? `<a href="${item.Website}" target="_blank" class="aa-project-btn">LAUNCH</a>` : ''}
+                            ${item.Demo ? `<a href="${item.Demo}" target="_blank" class="aa-project-btn">DEMO</a>` : ''}
+                            ${item.Code ? `<a href="${item.Code}" target="_blank" class="aa-project-btn">SOURCE</a>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        document.getElementById('aa-project-grid').innerHTML = html;
+    }
+
+    // --- PERSONNEL LOGIC ---
+    const team = [
+        { name: "Gabriel Mongefranco", email: "EMAIL_HERE", role: "Sr. Mobile Data Architect", dept: "Mobile Technologies Core, Eisenberg Family Depression Center", linkedin: "", website: "https://gabriel.mongefranco.com", github: "https://github.com/gabrielmongefranco" },
+        { name: "Jeremy Gluskin", email: "EMAIL_HERE", role: "Revenue Lifecycle System Coordinator", dept: "Quality - Patient Safety, Michigan Medicine", linkedin: "https://www.linkedin.com/in/jeremy-gluskin-16980623/", website: "", github: "https://github.com/jerm-ops" },
+        { name: "Shelley Boa", email: "EMAIL_HERE", role: "Program Manager", dept: "Internal Medicine / Pulmonology & Critical Care", linkedin: "https://www.linkedin.com/in/shelleyboa/", website: "", github: "https://github.com/blondilox-ai" },
+        { name: "Beth Plotts", email: "EMAIL_HERE", role: "Manager of Departmental Information Delivery", dept: "HITS EDIS Analytics, Michigan Medicine", linkedin: "https://www.linkedin.com/in/elizabeth-plotts-46a5a349", website: "", github: "" },
+        { name: "David Clark", email: "EMAIL_HERE", role: "Business Systems Analyst", dept: "Anesthesiology, Michigan Medicine", linkedin: "https://www.linkedin.com/in/davidclark23", website: "", github: "" },
+        { name: "Frans Antonissen", email: "EMAIL_HERE", role: "Software Developer", dept: "Radiology, Michigan Medicine", linkedin: "", website: "https://mcommunity.umich.edu/person/antoniss", github: "" },
+        { name: "TJ Petras", email: "EMAIL_HERE", role: "Business Systems Analyst", dept: "Facilities Administration, Michigan Medicine", linkedin: "https://www.linkedin.com/in/tjpetras", website: "", github: "" },
+        { name: "Yuhao Gu", email: "EMAIL_HERE", role: "Business Analyst", dept: "Environmental Services Administration, Michigan Medicine", linkedin: "https://www.linkedin.com/in/yuhaogu", website: "", github: "" }
+    ];
+
+    function renderTeam() {
+        let html = '';
+        team.forEach(m => {
+            const photo = (m.email && m.email !== "EMAIL_HERE") 
+                ? `${siteUrl}/_layouts/15/userphoto.aspx?size=L&accountname=${m.email}`
+                : `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237A8B9E'><path d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/></svg>`;
+
+            html += `
+                <div class="aa-team-mini-card">
+                    <img src="${photo}" class="aa-mini-avatar" alt="${m.name}">
+                    <div style="font-weight:bold; color:#fff; font-size: 0.95rem;">${m.name}</div>
+                    <div style="color:var(--umich-maize); font-size:0.75rem; margin: 6px 0; font-weight:bold;">${m.role}</div>
+                    <div style="color:var(--text-muted); font-size:0.65rem; line-height: 1.4;">${m.dept}</div>
+                    <div class="aa-social-links">
+                        ${m.github ? `<a href="${m.github}" target="_blank">GITHUB</a>` : ''}
+                        ${m.linkedin ? `<a href="${m.linkedin}" target="_blank">LINKEDIN</a>` : ''}
+                        ${m.website ? `<a href="${m.website}" target="_blank">WEBSITE</a>` : ''}
+                    </div>
+                </div>
+            `;
+        });
+        document.getElementById('aa-directory-content').innerHTML = html;
+    }
+
+    // Fire data requests immediately so the DOM is ready before the user clicks Start
+    fetchProjects();
+    renderTeam();
+})();
+</script>
+</body>
+</html>
