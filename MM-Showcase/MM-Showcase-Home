@@ -508,7 +508,8 @@ function declassifyDirectory() {
 }
 
 (function() {
-    const siteUrl = window._spPageContextInfo ? _spPageContextInfo.webAbsoluteUrl : window.location.origin + window.location.pathname.substring(0, window.location.pathname.indexOf('/SitePages'));
+    let basePath = window.location.pathname.split(/\/SitePages/i)[0];
+    let siteUrl = window._spPageContextInfo ? _spPageContextInfo.webAbsoluteUrl : window.location.origin + basePath;
     
     // --- PROJECTS LOGIC ---
     const listName = 'Projects';
