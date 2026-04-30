@@ -3,7 +3,7 @@ This file is part of Automators Anonymous™
 MM-showcase-home.html: The landing page for the internal showcase at Michigan Medicine, embedded into SharePoint via Modern Script Editor.
 Author(s): Gabriel Mongefranco, and the members of the Automators Anonymous™ community of practice.
 Created: 2026-04-21
-Last Modified: 2026-04-21
+Last Modified: 2026-04-30
 Summary: View this internal showcase at Michigan Medicine (login required): https://umhealth.sharepoint.com/sites/AutomatorsAnonymousShowcase
 Notes: See README file for documentation and full license information.
 
@@ -341,6 +341,13 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
     .aa-social-links a:hover { opacity: 1; text-shadow: 0 0 5px var(--cyber-cyan); }
 
     .aa-footer { margin-top: 100px; font-size: 0.7rem; color: var(--text-muted); text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 40px; }
+	
+	/* Instantly reveal cards when skipping the intro */
+	.skip-animations .aa-project-card {
+		opacity: 1 !important;
+		transform: none !important;
+		animation: none !important;
+	}
 
     /* Accessibility Overrides */
     @media (prefers-reduced-motion: reduce) {
@@ -474,7 +481,10 @@ function playAndEnvelopeAudio() {
 // --- BOOT SEQUENCE LOGIC ---
 function startBootSequence() {
     const splash = document.getElementById('aa-splash');
-    if(splash.classList.contains('booting')) return; 
+    if(splash.classList.contains('booting')) return;
+	
+	// Record the user's click in local storage for the 7-day bypass
+    try { localStorage.setItem('aa_last_visit', Date.now().toString()); } catch (err) { /* Ignore errors */ }
     
     // 1. Lock in the booting state & fire the custom audio engine
     splash.classList.add('booting');
@@ -500,6 +510,27 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.querySelector('.aa-main-content').style.pointerEvents = 'auto';
 }
 
+// --- SKIPPABLE ANIMATION LOGIC (LOCAL STORAGE) ---
+const lastVisit = localStorage.getItem('aa_last_visit');
+const now = Date.now();
+const WeeksAgoInMillisecs = 28 * 24 * 60 * 60 * 1000; // 28 days (4 weeks) in milliseconds
+// Check if the user clicked "Start" within the last x weeks
+if (lastVisit && (now - parseInt(lastVisit, 10)) < WeeksAgoInMillisecs) {
+    
+    // Hide the splash screen
+    document.getElementById('aa-splash').style.display = 'none';
+    
+    // Grab the main content container
+    const mainContent = document.querySelector('.aa-main-content');
+    
+    // Make the content active, but apply our new class to skip the explosion animations
+    mainContent.classList.add('active', 'skip-animations');
+    
+    // Ensure the container is visible and clickable
+    mainContent.style.opacity = '1';
+    mainContent.style.pointerEvents = 'auto';
+}
+
 // --- ONE-WAY DIRECTORY DECLASSIFICATION ---
 function declassifyDirectory() {
     document.getElementById('aa-directory-content').style.display = 'grid';
@@ -510,6 +541,9 @@ function declassifyDirectory() {
 (function() {
     let basePath = window.location.pathname.split(/\/SitePages/i)[0];
     let siteUrl = window._spPageContextInfo ? _spPageContextInfo.webAbsoluteUrl : window.location.origin + basePath;
+    
+    // Strip any accidental trailing slashes just to be safe
+    siteUrl = siteUrl.replace(/\/$/, '');
     
     // --- PROJECTS LOGIC ---
     const listName = 'Projects';
@@ -566,14 +600,14 @@ function declassifyDirectory() {
 
     // --- PERSONNEL LOGIC ---
     const team = [
-        { name: "Gabriel Mongefranco", email: "EMAIL_HERE", role: "Sr. Mobile Data Architect", dept: "Mobile Technologies Core, Eisenberg Family Depression Center", linkedin: "", website: "https://gabriel.mongefranco.com", github: "https://github.com/gabrielmongefranco" },
-        { name: "Jeremy Gluskin", email: "EMAIL_HERE", role: "Revenue Lifecycle System Coordinator", dept: "Quality - Patient Safety, Michigan Medicine", linkedin: "https://www.linkedin.com/in/jeremy-gluskin-16980623/", website: "", github: "https://github.com/jerm-ops" },
-        { name: "Shelley Boa", email: "EMAIL_HERE", role: "Program Manager", dept: "Internal Medicine / Pulmonology & Critical Care", linkedin: "https://www.linkedin.com/in/shelleyboa/", website: "", github: "https://github.com/blondilox-ai" },
-        { name: "Beth Plotts", email: "EMAIL_HERE", role: "Manager of Departmental Information Delivery", dept: "HITS EDIS Analytics, Michigan Medicine", linkedin: "https://www.linkedin.com/in/elizabeth-plotts-46a5a349", website: "", github: "" },
-        { name: "David Clark", email: "EMAIL_HERE", role: "Business Systems Analyst", dept: "Anesthesiology, Michigan Medicine", linkedin: "https://www.linkedin.com/in/davidclark23", website: "", github: "" },
-        { name: "Frans Antonissen", email: "EMAIL_HERE", role: "Software Developer", dept: "Radiology, Michigan Medicine", linkedin: "", website: "https://mcommunity.umich.edu/person/antoniss", github: "" },
-        { name: "TJ Petras", email: "EMAIL_HERE", role: "Business Systems Analyst", dept: "Facilities Administration, Michigan Medicine", linkedin: "https://www.linkedin.com/in/tjpetras", website: "", github: "" },
-        { name: "Yuhao Gu", email: "EMAIL_HERE", role: "Business Analyst", dept: "Environmental Services Administration, Michigan Medicine", linkedin: "https://www.linkedin.com/in/yuhaogu", website: "", github: "" }
+        { name: "Gabriel Mongefranco", email: "mongefrg@med.umich.edu", role: "Sr. Mobile Data Architect", dept: "Mobile Technologies Core, Eisenberg Family Depression Center", linkedin: "", website: "https://gabriel.mongefranco.com", github: "https://github.com/gabrielmongefranco" },
+        { name: "Jeremy Gluskin", email: "jgluskin@med.umich.edu", role: "Revenue Lifecycle System Coordinator", dept: "Quality - Patient Safety, Michigan Medicine", linkedin: "https://www.linkedin.com/in/jeremy-gluskin-16980623/", website: "", github: "https://github.com/jerm-ops" },
+        { name: "Shelley Boa", email: "sboa@med.umich.edu", role: "Program Manager", dept: "Internal Medicine / Pulmonology & Critical Care", linkedin: "https://www.linkedin.com/in/shelleyboa/", website: "", github: "https://github.com/blondilox-ai" },
+        { name: "Beth Plotts", email: "eplotts@med.umich.edu", role: "Manager of Departmental Information Delivery", dept: "HITS EDIS Analytics, Michigan Medicine", linkedin: "https://www.linkedin.com/in/elizabeth-plotts-46a5a349", website: "", github: "" },
+        { name: "David Clark", email: "davidrcl@med.umich.edu", role: "Business Systems Analyst", dept: "Anesthesiology, Michigan Medicine", linkedin: "https://www.linkedin.com/in/davidclark23", website: "", github: "" },
+        { name: "Frans Antonissen", email: "antoniss@med.umich.edu", role: "Software Developer", dept: "Radiology, Michigan Medicine", linkedin: "", website: "https://mcommunity.umich.edu/person/antoniss", github: "" },
+        { name: "TJ Petras", email: "tipetras@med.umich.edu", role: "Business Systems Analyst", dept: "Facilities Administration, Michigan Medicine", linkedin: "https://www.linkedin.com/in/tjpetras", website: "", github: "" },
+        { name: "Yuhao Gu", email: "yuhaog@med.umich.edu", role: "Business Analyst", dept: "Environmental Services Administration, Michigan Medicine", linkedin: "https://www.linkedin.com/in/yuhaogu", website: "", github: "" }
     ];
 
     function renderTeam() {
