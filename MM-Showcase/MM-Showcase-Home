@@ -600,14 +600,14 @@ function declassifyDirectory() {
 
     // --- PERSONNEL LOGIC ---
     const team = [
-        { name: "Gabriel Mongefranco", email: "mongefrg@med.umich.edu", role: "Sr. Mobile Data Architect", dept: "Mobile Technologies Core, Eisenberg Family Depression Center", linkedin: "", website: "https://gabriel.mongefranco.com", github: "https://github.com/gabrielmongefranco" },
-        { name: "Jeremy Gluskin", email: "jgluskin@med.umich.edu", role: "Revenue Lifecycle System Coordinator", dept: "Quality - Patient Safety, Michigan Medicine", linkedin: "https://www.linkedin.com/in/jeremy-gluskin-16980623/", website: "", github: "https://github.com/jerm-ops" },
-        { name: "Shelley Boa", email: "sboa@med.umich.edu", role: "Program Manager", dept: "Internal Medicine / Pulmonology & Critical Care", linkedin: "https://www.linkedin.com/in/shelleyboa/", website: "", github: "https://github.com/blondilox-ai" },
-        { name: "Beth Plotts", email: "eplotts@med.umich.edu", role: "Manager of Departmental Information Delivery", dept: "HITS EDIS Analytics, Michigan Medicine", linkedin: "https://www.linkedin.com/in/elizabeth-plotts-46a5a349", website: "", github: "" },
-        { name: "David Clark", email: "davidrcl@med.umich.edu", role: "Business Systems Analyst", dept: "Anesthesiology, Michigan Medicine", linkedin: "https://www.linkedin.com/in/davidclark23", website: "", github: "" },
-        { name: "Frans Antonissen", email: "antoniss@med.umich.edu", role: "Software Developer", dept: "Radiology, Michigan Medicine", linkedin: "", website: "https://mcommunity.umich.edu/person/antoniss", github: "" },
-        { name: "TJ Petras", email: "tipetras@med.umich.edu", role: "Business Systems Analyst", dept: "Facilities Administration, Michigan Medicine", linkedin: "https://www.linkedin.com/in/tjpetras", website: "", github: "" },
-        { name: "Yuhao Gu", email: "yuhaog@med.umich.edu", role: "Business Analyst", dept: "Environmental Services Administration, Michigan Medicine", linkedin: "https://www.linkedin.com/in/yuhaogu", website: "", github: "" }
+        { name: "Gabriel Mongefranco", email: "EMAIL_HERE", role: "Sr. Mobile Data Architect", dept: "Mobile Technologies Core, Eisenberg Family Depression Center", linkedin: "", website: "https://gabriel.mongefranco.com", github: "https://github.com/gabrielmongefranco" },
+        { name: "Jeremy Gluskin", email: "EMAIL_HERE", role: "Revenue Lifecycle System Coordinator", dept: "Quality - Patient Safety, Michigan Medicine", linkedin: "https://www.linkedin.com/in/jeremy-gluskin-16980623/", website: "", github: "https://github.com/jerm-ops" },
+        { name: "Shelley Boa", email: "EMAIL_HERE", role: "Program Manager", dept: "Internal Medicine / Pulmonology & Critical Care", linkedin: "https://www.linkedin.com/in/shelleyboa/", website: "", github: "https://github.com/blondilox-ai" },
+        { name: "Beth Plotts", email: "EMAIL_HERE", role: "Manager of Departmental Information Delivery", dept: "HITS EDIS Analytics, Michigan Medicine", linkedin: "https://www.linkedin.com/in/elizabeth-plotts-46a5a349", website: "", github: "" },
+        { name: "David Clark", email: "EMAIL_HERE", role: "Business Systems Analyst", dept: "Anesthesiology, Michigan Medicine", linkedin: "https://www.linkedin.com/in/davidclark23", website: "", github: "" },
+        { name: "Frans Antonissen", email: "EMAIL_HERE", role: "Software Developer", dept: "Radiology, Michigan Medicine", linkedin: "", website: "https://mcommunity.umich.edu/person/antoniss", github: "" },
+        { name: "TJ Petras", email: "EMAIL_HERE", role: "Business Systems Analyst", dept: "Facilities Administration, Michigan Medicine", linkedin: "https://www.linkedin.com/in/tjpetras", website: "", github: "" },
+        { name: "Yuhao Gu", email: "EMAIL_HERE", role: "Business Analyst", dept: "Environmental Services Administration, Michigan Medicine", linkedin: "https://www.linkedin.com/in/yuhaogu", website: "", github: "" }
     ];
 
     function renderTeam() {
