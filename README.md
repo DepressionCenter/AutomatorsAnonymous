@@ -15,8 +15,9 @@ AI, JavaScript, SharePoint, and Power Platform projects built by the Automators 
 
   
 ### Projects:
-+ **[DataLaVista™](https://github.com/depressioncenter/datalavista):** Dashboard designer and toolkit. Tell your expensive BI tools: "Data la vista, baby!" ™ 🕶️
++ **[DataLaVista™](https://github.com/depressioncenter/datalavista):** Dashboard designer and toolkit. Tell your expensive BI tools: "Data la vista, baby!" ™ 🕶️ [Visit Website.](https://michmed.org/datalavista)
 + **[DontDeleteMyEmail](https://github.com/DepressionCenter/DontDeleteMyEmail):** Collection of solutions to the "IT is going to delete my old emails" ™ problem, using Power Automate or other tools.
++ **[MM Showcase](https://github.com/DepressionCenter/AutomatorsAnonymous/tree/main/MM-Showcase):** Code for the landing page for the internal Automators Anonymous™ showcase at Michigan Medicine. [View Showcase](https://umhealth.sharepoint.com/sites/AutomatorsAnonymousShowcase) (login required).
 + **[RegExService](https://github.com/DepressionCenter/AutomatorsAnonymous/tree/main/RegExService):** Flows for running regular expressions in Power Automate using an external REST-based API, such as TeamDynamix iPaaS.
 + **[Sitenalyzer](https://github.com/depressioncenter/Sitenalyzer):** Helps you extract a data dictionary and security information from your SharePoint sites.
 
