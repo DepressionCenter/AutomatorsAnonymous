@@ -3,7 +3,7 @@
 # Automators Anonymous™
 
 ## Description
-Tidbits of code for Power Automate, Power Query, Power BI, Power Apps, SharePoint, AI and other cool technologies, from the attendees of the Power Automate Lab ran by the Automators Anonymous™ community of practice at the University of Michigan / Michigan Medicine, in collaboration with the Eisenberg Family Depression Center.
+AI, JavaScript, SharePoint, and Power Platform projects built by the Automators Anonymous™ community of practice at University of Michigan.
 
 **Automators Anonymous™** is an invite-only Community of Practice (CoP) comprising elite analysts, program managers, database architects, and developers from across Michigan Medicine and the University of Michigan. We don't just use technology; we push its absolute boundaries. Together, we leverage AI, Power Platform, and other cutting-edge tools to engineer creative tech solutions, smash bottlenecks, and redefine what's possible in research, business, clinical and IT workflows.
 
@@ -11,10 +11,14 @@ Tidbits of code for Power Automate, Power Query, Power BI, Power Apps, SharePoin
 
 ## Quick Start Guide
 + See individual README files for instructions. Each folder contains independent code.
++ Michigan Medicine faculty and staff can view live SharePoint demos at the [Automators Anonymous™ MM Showcase](https://umhealth.sharepoint.com/sites/AutomatorsAnonymousShowcase).
+
+  
 ### Projects:
-+ [DataLaVista](https://github.com/depressioncenter/datalavista): Tell your expensive BI tools: "Data la vista, baby!" ™ 🕶️
-+ [DontDeleteMyEmail](https://github.com/DepressionCenter/DontDeleteMyEmail): Collection of solutions to the "IT is going to delete my old emails" ™ problem, using Power Automate or other tools.
-+ [RegExService](https://github.com/DepressionCenter/AutomatorsAnonymous/tree/main/RegExService): Flows for running regular expressions in Power Automate using an external REST-based API, such as TeamDynamix iPaaS.
++ **[DataLaVista™](https://github.com/depressioncenter/datalavista):** Dashboard designer and toolkit. Tell your expensive BI tools: "Data la vista, baby!" ™ 🕶️
++ **[DontDeleteMyEmail](https://github.com/DepressionCenter/DontDeleteMyEmail):** Collection of solutions to the "IT is going to delete my old emails" ™ problem, using Power Automate or other tools.
++ **[RegExService](https://github.com/DepressionCenter/AutomatorsAnonymous/tree/main/RegExService):** Flows for running regular expressions in Power Automate using an external REST-based API, such as TeamDynamix iPaaS.
++ **[Sitenalyzer](https://github.com/depressioncenter/Sitenalyzer):** Helps you extract a data dictionary and security information from your SharePoint sites.
 
 
 
